@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Interceuticals-Service" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+  <!-- ******************************************************************************************* 
+    Note: If your alias class type properties match the column names from the resulted query then
+    there is no need to create a resultMap for it.
+    ************************************************************************************************-->
+  <alias>
+    <!--<typeAlias type="SchoolSysWeb.Models.SiteAdmin.SiteAdmin_User" alias="siteAdminUser" />-->
+  </alias>
+  <resultMaps>
+  </resultMaps>
+  <statements>
+    <select id="getProducts"  resultClass="System.Collections.IDictionary" parameterClass="int">
+      SELECT P.OTCProductId,DisplayText,COALESCE(OTCParentProductId,0) AS OTCParentProductId,
+      COALESCE(OTCSubordinateProductId,0) AS OTCSubordinateProductId,
+      CASE
+      WHEN OTCParentProductId IS NOT NULL THEN 1
+      ELSE 0
+      END AS hasAutoShip
+      FROM OTCProduct P
+      JOIN OTCVisibleProduct VP
+      ON VP.OTCProductId = P.OTCProductId
+      AND OTCProductCategoryId = #categoryId#
+      LEFT JOIN OTCProductRelationship R
+      ON R.OTCParentProductId = P.OTCProductID
+      WHERE OTCSiteId = 7
+      ORDER BY DisplayOrder
+    </select>
+  </statements>
+</sqlMap>

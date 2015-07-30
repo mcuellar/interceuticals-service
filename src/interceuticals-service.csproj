@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\interceuticals-service.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -157,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Dao\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -217,6 +219,7 @@
     <Content Include="Lib\Spring.Web.dll" />
     <Content Include="Lib\Spring.Web.Extensions.dll" />
     <Content Include="Lib\Spring.Web.Mvc3.dll" />
+    <Content Include="SQLMaps\Product.xml" />
     <Content Include="Resources\application-context.xml" />
     <Content Include="Resources\dao-context.xml" />
     <Content Include="Resources\services.xml" />
