@@ -5,9 +5,9 @@ using System.Reflection;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
 using System.Xml.XPath;
-using interceuticals_service.Areas.HelpPage.ModelDescriptions;
+using InterceuticalsService.Areas.HelpPage.ModelDescriptions;
 
-namespace interceuticals_service.Areas.HelpPage
+namespace InterceuticalsService.Areas.HelpPage
 {
     /// <summary>
     /// A custom <see cref="IDocumentationProvider"/> that reads the API documentation from an XML documentation file.

@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http.Headers;
 using System.Web.Http.Description;
-using interceuticals_service.Areas.HelpPage.ModelDescriptions;
+using InterceuticalsService.Areas.HelpPage.ModelDescriptions;
 
-namespace interceuticals_service.Areas.HelpPage.Models
+namespace InterceuticalsService.Areas.HelpPage.Models
 {
     /// <summary>
     /// The model that represents an API displayed on the help page.

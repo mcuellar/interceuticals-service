@@ -1,10 +1,10 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using interceuticals_service.Areas.HelpPage.ModelDescriptions;
-using interceuticals_service.Areas.HelpPage.Models;
+using InterceuticalsService.Areas.HelpPage.ModelDescriptions;
+using InterceuticalsService.Areas.HelpPage.Models;
 
-namespace interceuticals_service.Areas.HelpPage.Controllers
+namespace InterceuticalsService.Areas.HelpPage.Controllers
 {
     /// <summary>
     /// The controller that will handle requests for the help page.

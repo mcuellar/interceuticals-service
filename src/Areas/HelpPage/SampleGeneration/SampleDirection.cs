@@ -1,4 +1,4 @@
-namespace interceuticals_service.Areas.HelpPage
+namespace InterceuticalsService.Areas.HelpPage
 {
     /// <summary>
     /// Indicates whether the sample is used for request or response

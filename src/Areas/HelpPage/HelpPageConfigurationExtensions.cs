@@ -11,10 +11,10 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
-using interceuticals_service.Areas.HelpPage.ModelDescriptions;
-using interceuticals_service.Areas.HelpPage.Models;
+using InterceuticalsService.Areas.HelpPage.ModelDescriptions;
+using InterceuticalsService.Areas.HelpPage.Models;
 
-namespace interceuticals_service.Areas.HelpPage
+namespace InterceuticalsService.Areas.HelpPage
 {
     public static class HelpPageConfigurationExtensions
     {

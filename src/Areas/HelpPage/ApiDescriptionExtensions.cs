@@ -3,7 +3,7 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Description;
 
-namespace interceuticals_service.Areas.HelpPage
+namespace InterceuticalsService.Areas.HelpPage
 {
     public static class ApiDescriptionExtensions
     {

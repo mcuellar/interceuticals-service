@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace interceuticals_service.Controllers
+namespace InterceuticalsService.Controllers
 {
     public class ValuesController : ApiController
     {

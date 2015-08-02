@@ -1,6 +1,6 @@
 using System.Collections.ObjectModel;
 
-namespace interceuticals_service.Areas.HelpPage.ModelDescriptions
+namespace InterceuticalsService.Areas.HelpPage.ModelDescriptions
 {
     public class ComplexTypeModelDescription : ModelDescription
     {

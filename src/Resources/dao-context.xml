@@ -7,7 +7,15 @@
 
 
   <!-- Daos -->  
-  <!--<object id="contentDao" type="HorizonChimneyMobile.Dao.Impl.ContentDaoImpl, HorizonChimneyMobile" singleton="false"></object>-->
+  <object id="productDao" type="InterceuticalsService.Dao.ProductDao, InterceuticalsService" singleton="false"></object>
+  
+  <!-- Services-->
+
+  <!-- API Controllers -->
+
+  <object id="productController" type="InterceuticalsService.Controllers.ProductController, InterceuticalsService" singleton="false">
+    <property name="ProductDao" ref="productDao"/>
+  </object>
   
   
   <!--intentionally do NOT register the AccountController with the container; demonstrates that the underlying

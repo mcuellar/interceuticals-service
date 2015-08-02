@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace interceuticals_service.Controllers
+namespace InterceuticalsService.Controllers
 {
     public class HomeController : Controller
     {
