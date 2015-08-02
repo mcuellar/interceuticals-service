@@ -11,8 +11,8 @@
   </resultMaps>
   <statements>
     <select id="getProducts"  resultClass="product" parameterClass="int">
-      SELECT P.OTCProductId as Id,DisplayText as Label,
-      COALESCE(OTCParentProductId,0) AS OTCParentProductId as ParentProductId,
+      SELECT P.OTCProductId as Id, DisplayText as Label,
+      COALESCE(OTCParentProductId,0) AS ParentProductId,
       COALESCE(OTCSubordinateProductId,0) AS SubordinateProductId,
       CASE
       WHEN OTCParentProductId IS NOT NULL THEN 1

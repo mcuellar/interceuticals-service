@@ -1,4 +1,5 @@
-﻿using InterceuticalsService.Dao;
+﻿using InterceuticalsService.Common;
+using InterceuticalsService.Dao;
 using InterceuticalsService.Models;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,12 @@ namespace InterceuticalsService.Controllers
 {
     public class ProductController : ApiController
     {
-        IProduct ProductDao { get; set; }
+        // Need to DI this way.  Via controller DI did not work.
+        ProductDao ProductDao = (ProductDao) AppContext.GetSpringObject("productDao");
 
         string Test { get; set; }
 
         public HttpResponseMessage Get(int id)
-        
         {
             string errMsg = "FAILED: Unable to get products.";
             ResponseResult response = null;
