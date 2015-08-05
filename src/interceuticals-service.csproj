@@ -204,6 +204,7 @@
     </Compile>
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ResponseResult.cs" />
+    <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -21,5 +21,15 @@ namespace InterceuticalsService.Dao
         {
             return (List<Product>) Mapper.Instance().QueryForList<Product>("getProducts", categoryId);
         }
+
+        /// <summary>
+        /// Adds product to cart
+        /// </summary>
+        /// <param name="cart">ShoppingCart object</param>
+        /// <returns></returns>
+        public int AddProductToShoppingCart(ShoppingCart cart)
+        {
+            return (int) Mapper.Instance().Insert("insertProduct", cart);
+        }
     }
 }

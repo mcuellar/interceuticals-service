@@ -16,7 +16,12 @@ namespace InterceuticalsService.Controllers
         ProductDao ProductDao = (ProductDao) AppContext.GetSpringObject("productDao");
 
         string Test { get; set; }
-
+         
+        /// <summary>
+        /// Get the list of products for a given category. (Ex: Betterwoman)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public HttpResponseMessage Get(int id)
         {
             string errMsg = "FAILED: Unable to get products.";
@@ -35,6 +40,35 @@ namespace InterceuticalsService.Controllers
             }
             
         }
+
+        /// <summary>
+        /// Adds new product to shopping cart
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <returns></returns>
+        public HttpResponseMessage Add(ShoppingCart cart)
+        {
+            string errMsg = "FAILED: Unable to add to cart.";
+            string msg = "Success";
+            string devMsg = String.Format("Successfuly added new product to cart. Cart Id = [{0}], Product Id = [{1}], Product Name = [{2}]", cart.CartId.ToString(), cart.product.Id, cart.product.Label);
+            int affectedRows = 0;
+            ResponseResult response = null;
+
+            try
+            {
+                affectedRows = ProductDao.AddProductToShoppingCart(cart);
+                response = new ResponseResult { Message = msg, DeveloperMessage = devMsg };
+                return Request.CreateResponse<ResponseResult>(HttpStatusCode.OK, response);
+            }
+            catch (Exception ex)
+            {
+                response = new ResponseResult { Message = errMsg, DeveloperMessage = ex.Message };
+                return Request.CreateResponse<ResponseResult>(HttpStatusCode.OK, response);
+            }
+
+        }
+
+
 
         
     }

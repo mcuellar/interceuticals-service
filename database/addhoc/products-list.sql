@@ -16,3 +16,6 @@ LEFT JOIN OTCProductRelationship R
 ON R.OTCParentProductId = P.OTCProductID
 WHERE OTCSiteId = 7
 ORDER BY DisplayOrder
+
+select *
+from OTCProduct;

@@ -12,6 +12,8 @@ namespace InterceuticalsService
             // Web API configuration and services
             GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
 
+            //config.EnableCors();
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 
