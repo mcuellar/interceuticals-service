@@ -199,6 +199,7 @@
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Dao\IProduct.cs" />
     <Compile Include="Dao\ProductDao.cs" />
+    <Compile Include="Extenders\ValidateModelAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -265,6 +266,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="SQLMaps\ShoppingCart.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

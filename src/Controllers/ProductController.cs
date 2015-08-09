@@ -46,7 +46,7 @@ namespace InterceuticalsService.Controllers
         /// </summary>
         /// <param name="cart"></param>
         /// <returns></returns>
-        public HttpResponseMessage Add(ShoppingCart cart)
+        public HttpResponseMessage Save(ShoppingCart cart)
         {
             string errMsg = "FAILED: Unable to add to cart.";
             string msg = "Success";

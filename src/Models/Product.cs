@@ -12,5 +12,6 @@ namespace InterceuticalsService.Models
         public int ParentProductId { get; set; }
         public int SubordinateProductId { get; set; }
         public bool HasAutohip { get; set; }
+        public float Price { get; set; }
     }
 }

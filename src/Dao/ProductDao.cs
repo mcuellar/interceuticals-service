@@ -10,7 +10,7 @@ namespace InterceuticalsService.Dao
     /// <summary>
     /// Dao for product data.
     /// </summary>
-    public class ProductDao : IProduct
+    public class ProductDao
     {
         /// <summary>
         /// Gets list of products
