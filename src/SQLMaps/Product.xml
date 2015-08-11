@@ -6,12 +6,20 @@
     ************************************************************************************************-->
   <alias>
     <typeAlias type="InterceuticalsService.Models.Product" alias="product" />
-    <typeAlias type="InterceuticalsService.Models.ShoppingCart" alias="cart"/>
   </alias>
+  <!--- Cache Models  Ref: http://ibatis.apache.org/docs/dotnet/datamapper/ch03s08.html -->
+  <cacheModels>
+    <cacheModel id="products-cache" implementation="LRU" readOnly="true" serialize="false">
+      <flushInterval minutes="60"/>
+
+      <!-- 100 Entries of max cache to store-->
+      <property name="CacheSize" value="20"/>
+    </cacheModel>
+  </cacheModels>
   <resultMaps>
   </resultMaps>
   <statements>
-    <select id="getProducts"  resultClass="product" parameterClass="int">
+    <select id="getProducts" resultClass="product" parameterClass="int" cacheModel="products-cache">
       SELECT P.OTCProductId as Id, DisplayText as Label,
       COALESCE(OTCParentProductId,0) AS ParentProductId,
       COALESCE(OTCSubordinateProductId,0) AS SubordinateProductId,

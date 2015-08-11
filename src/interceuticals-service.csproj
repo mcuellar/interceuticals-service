@@ -197,7 +197,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="Dao\IProduct.cs" />
     <Compile Include="Dao\ProductDao.cs" />
     <Compile Include="Extenders\ValidateModelAttribute.cs" />
     <Compile Include="Global.asax.cs">

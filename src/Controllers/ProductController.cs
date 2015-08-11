@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Diagnostics;
 
 namespace InterceuticalsService.Controllers
 {
@@ -22,6 +23,7 @@ namespace InterceuticalsService.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [System.Web.Mvc.OutputCache(CacheProfile = "Cache15MinById")]
         public HttpResponseMessage Get(int id)
         {
             string errMsg = "FAILED: Unable to get products.";
@@ -35,8 +37,10 @@ namespace InterceuticalsService.Controllers
             }
             catch (Exception ex)
             {
+                Debug.Write(ex);
                 response = new ResponseResult { Message = errMsg, DeveloperMessage = ex.Message };
-                return Request.CreateResponse<ResponseResult>(HttpStatusCode.OK, response);
+                return Request.CreateResponse<ResponseResult>(HttpStatusCode.InternalServerError, response);
+                
             }
             
         }
@@ -46,11 +50,12 @@ namespace InterceuticalsService.Controllers
         /// </summary>
         /// <param name="cart"></param>
         /// <returns></returns>
+        [HttpPost]
         public HttpResponseMessage Save(ShoppingCart cart)
         {
             string errMsg = "FAILED: Unable to add to cart.";
             string msg = "Success";
-            string devMsg = String.Format("Successfuly added new product to cart. Cart Id = [{0}], Product Id = [{1}], Product Name = [{2}]", cart.CartId.ToString(), cart.product.Id, cart.product.Label);
+            string devMsg = String.Format("Successfuly added new product to cart. Cart Id = [{0}], Product Id = [{1}], Product Name = [{2}]", cart.Id.ToString(), cart.CartProduct.Id, cart.CartProduct.Label);
             int affectedRows = 0;
             ResponseResult response = null;
 
@@ -63,13 +68,9 @@ namespace InterceuticalsService.Controllers
             catch (Exception ex)
             {
                 response = new ResponseResult { Message = errMsg, DeveloperMessage = ex.Message };
-                return Request.CreateResponse<ResponseResult>(HttpStatusCode.OK, response);
+                return Request.CreateResponse<ResponseResult>(HttpStatusCode.InternalServerError, response);
             }
 
         }
-
-
-
-        
     }
 }

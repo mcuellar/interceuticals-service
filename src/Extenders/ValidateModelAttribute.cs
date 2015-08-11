@@ -7,6 +7,7 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using System.Web.Http.ModelBinding;
 using System.Net;
+using System.Diagnostics;
 
 namespace InterceuticalsService.Extenders
 {
@@ -14,11 +15,18 @@ namespace InterceuticalsService.Extenders
     {
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
-            if (actionContext.ModelState.IsValid == false)
+            Debug.WriteLine("Request Type: " + actionContext.Request.Method.Method.ToString());
+
+            if(actionContext.Request.Method.Method.ToString() == "POST")
             {
-                actionContext.Response = actionContext.Request.CreateErrorResponse(
-                    HttpStatusCode.BadRequest, actionContext.ModelState);
+                if (actionContext.ModelState.IsValid == false)
+                {
+                    actionContext.Response = actionContext.Request.CreateErrorResponse(
+                        HttpStatusCode.BadRequest, actionContext.ModelState);
+                }
+
             }
+
         }
     }
 }

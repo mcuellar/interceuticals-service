@@ -7,9 +7,11 @@ namespace InterceuticalsService.Models
 {
     public class ShoppingCart
     {
-        public string CartId { get; set; }
+        public string Id { get; set; }
         public string SessionId { get; set; }
-        public Product product { get; set; }
+        public float OrderPrice { get; set; }
+        public int TotalItems { get; set; }
+        public Product CartProduct { get; set; }
             
     }
 }

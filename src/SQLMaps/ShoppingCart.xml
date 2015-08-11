@@ -1,31 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<sqlMap namespace="Interceuticals-Service" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+<sqlMap namespace="Interceuticals-Cart" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
   <!-- ******************************************************************************************* 
     Note: If your alias class type properties match the column names from the resulted query then
     there is no need to create a resultMap for it.
     ************************************************************************************************-->
   <alias>
-    <typeAlias type="InterceuticalsService.Models.Product" alias="product" />
     <typeAlias type="InterceuticalsService.Models.ShoppingCart" alias="cart"/>
   </alias>
   <resultMaps>
   </resultMaps>
   <statements>
-    <update id="saveCart" resultClass="int" class="cart">
-      <![CDATA[
-        SET NOCOUNT ON
-        DECLARE @shoppingCartID INT
-        IF EXISTS(SELECT 'x' FROM ShoppingCart WHERE iisSessionID = @iisSessionID)
-        BEGIN
-         SELECT @shoppingCartID = shoppingCartID FROM ShoppingCart WHERE iisSessionID = #SessionId#
-        END
-        ELSE
-        BEGIN
+    <insert id="saveCart" parameterClass="string">
           INSERT INTO ShoppingCart (iisSessionId) VALUES (#SessionId#)
-            SET @shoppingCartID = @@IDENTITY
-        END
-        SELECT @shoppingCartID AS shoppingCartID
-      ]]>
-    </update>
+      <selectKey type="post" resultClass="int" property="Id">SELECT @@IDENTITY AS Id </selectKey>
+    </insert>
+    <insert id="saveCartItem" parameterClass="cart">
+          INSERT INTO ShoppingCartItem(shoppingCartID,productID,productPrice,OTCPromotionId,OrderPrice,itemCount,productFeatureIdentifier)
+		      VALUES(#Id#, #CartProduct.Id#, #CartProduct.Price#, #CartProduct.ParentProductId#, #CartProduct.Price#, #TotalItems#, #CartProduct.Id#)
+      <selectKey type="post" resultClass="int" property="Id">SELECT @@IDENTITY AS Id </selectKey>
+    </insert>
   </statements>
 </sqlMap>

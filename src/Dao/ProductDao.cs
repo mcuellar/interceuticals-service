@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using IBatisNet.DataMapper;
 using InterceuticalsService.Models;
+using IBatisNet.DataMapper.Exceptions;
+using System.Data.SqlClient;
 
 namespace InterceuticalsService.Dao
 {
@@ -29,7 +31,30 @@ namespace InterceuticalsService.Dao
         /// <returns></returns>
         public int AddProductToShoppingCart(ShoppingCart cart)
         {
-            return (int) Mapper.Instance().Insert("insertProduct", cart);
+            try
+            {
+                Mapper.Instance().BeginTransaction();
+                int cartId = (int) Mapper.Instance().Insert("saveCart", cart.SessionId);
+                int cartItemId = (int)Mapper.Instance().Insert("saveCartItem", cart);
+
+                Mapper.Instance().CommitTransaction();
+                return cartId;
+            }
+            catch (DataMapperException)
+            {
+                Mapper.Instance().RollBackTransaction();
+                throw;
+            }
+            catch (SqlException)
+            {
+                Mapper.Instance().RollBackTransaction();
+                throw;
+            }
+            catch (Exception)
+            {
+                Mapper.Instance().RollBackTransaction();
+                throw;
+            }
         }
     }
 }
