@@ -8,7 +8,8 @@
 
   <!-- Daos -->  
   <object id="productDao" type="InterceuticalsService.Dao.ProductDao, InterceuticalsService" singleton="false"></object>
-  
+  <object id="cartDao" type="InterceuticalsService.Dao.CartDao, InterceuticalsService" singleton="false"></object>
+
   <!-- Services-->
 
   <!-- API Controllers -->
