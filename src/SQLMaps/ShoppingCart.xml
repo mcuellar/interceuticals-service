@@ -10,14 +10,15 @@
   <resultMaps>
   </resultMaps>
   <statements>
-    <insert id="saveCart" parameterClass="string">
-          INSERT INTO ShoppingCart (iisSessionId) VALUES (#SessionId#)
+    <insert id="saveCart" parameterClass="cart">
+      INSERT INTO ShoppingCart (iisSessionId) VALUES (#SessionId#)
       <selectKey type="post" resultClass="int" property="Id">SELECT @@IDENTITY AS Id </selectKey>
     </insert>
     <insert id="saveCartItem" parameterClass="cart">
-          INSERT INTO ShoppingCartItem(shoppingCartID,productID,productPrice,OTCPromotionId,OrderPrice,itemCount,productFeatureIdentifier)
-		      VALUES(#Id#, #CartProduct.Id#, #CartProduct.Price#, #CartProduct.ParentProductId#, #CartProduct.Price#, #TotalItems#, #CartProduct.Id#)
-      <selectKey type="post" resultClass="int" property="Id">SELECT @@IDENTITY AS Id </selectKey>
+      INSERT INTO ShoppingCartItem(shoppingCartID,productID,productPrice,OTCPromotionId,OrderPrice,itemCount,productFeatureIdentifier)
+      VALUES(#Id#, #CartProduct.Id#, #CartProduct.Price#, #CartProduct.ParentProductId#, #CartProduct.Price#, #TotalItems#, #CartProduct.Id#);
+
+      <selectKey type="post" resultClass="int" property="CartItemId">SELECT @@IDENTITY AS CartItemId</selectKey>
     </insert>
   </statements>
 </sqlMap>

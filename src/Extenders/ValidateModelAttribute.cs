@@ -17,9 +17,10 @@ namespace InterceuticalsService.Extenders
         {
             Debug.WriteLine("Request Type: " + actionContext.Request.Method.Method.ToString());
 
+            // Only check Model State if Request is a POST
             if(actionContext.Request.Method.Method.ToString() == "POST")
             {
-                if (actionContext.ModelState.IsValid == false)
+                if (actionContext.ModelState.IsValid == false) 
                 {
                     actionContext.Response = actionContext.Request.CreateErrorResponse(
                         HttpStatusCode.BadRequest, actionContext.ModelState);

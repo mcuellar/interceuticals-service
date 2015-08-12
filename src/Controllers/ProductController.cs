@@ -55,18 +55,20 @@ namespace InterceuticalsService.Controllers
         {
             string errMsg = "FAILED: Unable to add to cart.";
             string msg = "Success";
-            string devMsg = String.Format("Successfuly added new product to cart. Cart Id = [{0}], Product Id = [{1}], Product Name = [{2}]", cart.Id.ToString(), cart.CartProduct.Id, cart.CartProduct.Label);
-            int affectedRows = 0;
+            string devMsg = ""; 
+            int cartId = 0;
             ResponseResult response = null;
 
             try
             {
-                affectedRows = ProductDao.AddProductToShoppingCart(cart);
-                response = new ResponseResult { Message = msg, DeveloperMessage = devMsg };
+                devMsg = String.Format("Successfuly added new product to cart. Session Id = [{0}], Product Id = [{1}]", cart.SessionId, cart.CartProduct.Id);
+                cartId = ProductDao.AddProductToShoppingCart(cart);
+                response = new ResponseResult { Message = msg, DeveloperMessage = devMsg, Id = cartId};
                 return Request.CreateResponse<ResponseResult>(HttpStatusCode.OK, response);
             }
             catch (Exception ex)
             {
+                Debug.Write(ex);
                 response = new ResponseResult { Message = errMsg, DeveloperMessage = ex.Message };
                 return Request.CreateResponse<ResponseResult>(HttpStatusCode.InternalServerError, response);
             }
