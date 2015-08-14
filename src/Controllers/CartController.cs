@@ -24,7 +24,7 @@ namespace InterceuticalsService.Controllers
         [HttpPost]
         public HttpResponseMessage Save(ShoppingCart cart)
         {
-            string errMsg = "FAILED: Unable to add to cart.";
+            string errMsg = "FAILED: Unable to save cart.";
             string msg = "Success";
             string devMsg = "";
             int cartId = 0;
@@ -49,6 +49,54 @@ namespace InterceuticalsService.Controllers
                 return Request.CreateResponse<ResponseResult>(HttpStatusCode.InternalServerError, response);
             }
 
+        }
+
+        [HttpPost]
+        public HttpResponseMessage Clear(int id)
+        {
+            string errMsg = "FAILED: Unable to empty cart.";
+            string msg = "Success";
+            int rowsAffected = 0;
+            string devMsg = "";
+            ResponseResult response = null;
+
+            try
+            {
+                devMsg = String.Format("Successfuly removed all items from cart. Cart Id = [{0}]", id);
+                rowsAffected = CartDao.EmptyCart(id);
+                response = new ResponseResult { Message = msg, DeveloperMessage = devMsg, Id = id };
+                return Request.CreateResponse<ResponseResult>(HttpStatusCode.OK, response);
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex);
+                response = new ResponseResult { Message = errMsg, DeveloperMessage = ex.Message };
+                return Request.CreateResponse<ResponseResult>(HttpStatusCode.InternalServerError, response);
+            }
+        }
+
+        [HttpPost]
+        public HttpResponseMessage RemoveItem(int id)
+        {
+            string errMsg = "FAILED: Unable to remove cart item.";
+            string msg = "Success";
+            int rowsAffected = 0;
+            string devMsg = "";
+            ResponseResult response = null;
+
+            try
+            {
+                devMsg = String.Format("Successfuly removed item from cart. Cart Item Id = [{0}]", id);
+                rowsAffected = CartDao.RemoveFromCart(id);
+                response = new ResponseResult { Message = msg, DeveloperMessage = devMsg, Id = id };
+                return Request.CreateResponse<ResponseResult>(HttpStatusCode.OK, response);
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex);
+                response = new ResponseResult { Message = errMsg, DeveloperMessage = ex.Message };
+                return Request.CreateResponse<ResponseResult>(HttpStatusCode.InternalServerError, response);
+            }
         }
     }
 }

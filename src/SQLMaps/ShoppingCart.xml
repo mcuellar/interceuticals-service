@@ -20,5 +20,11 @@
 
       <selectKey type="post" resultClass="int" property="CartItemId">SELECT @@IDENTITY AS CartItemId</selectKey>
     </insert>
+    <delete id="clearCart" parameterClass="int">
+      DELETE FROM ShoppingCartItem WHERE ShoppingCartId = #cartId#
+    </delete>
+    <delete id="deleteFromCart" parameterClass="int">
+      DELETE FROM ShoppingCartItem WHERE ShoppingCartItemId = #cartItemId#
+    </delete>
   </statements>
 </sqlMap>

@@ -23,6 +23,27 @@ namespace InterceuticalsService.Dao
         }
 
         /// <summary>
+        /// Removes all cart items.
+        /// </summary>
+        /// <param name="cartId">Cart Id</param>
+        /// <returns></returns>
+        public int EmptyCart(int cartId)
+        {
+            return (int)Mapper.Instance().Delete("clearCart", cartId);
+        }
+
+        /// <summary>
+        /// Removes a given item from the cart.
+        /// </summary>
+        /// <param name="cartItemId">Unique Cart Item Id Identifier</param>
+        /// <returns></returns>
+        public int RemoveFromCart(int cartItemId)
+        {
+            return (int)Mapper.Instance().Delete("deleteFromCart", cartItemId);
+        }
+
+
+        /// <summary>
         /// Adds product to cart
         /// </summary>
         /// <param name="cart">ShoppingCart object</param>
