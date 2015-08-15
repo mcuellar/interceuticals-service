@@ -25,7 +25,7 @@ namespace InterceuticalsService.Controllers
         public HttpResponseMessage Save(ShoppingCart cart)
         {
             string errMsg = "FAILED: Unable to save cart.";
-            string msg = "Success";
+            string msg = "Success. New item added to cart.";
             string devMsg = "";
             int cartId = 0;
             ResponseResult response = null;
