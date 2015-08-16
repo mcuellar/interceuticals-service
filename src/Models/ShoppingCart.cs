@@ -16,6 +16,7 @@ namespace InterceuticalsService.Models
         public float OrderPrice { get; set; }
         public int TotalItems { get; set; }
         public Product CartProduct { get; set; }
+        public List<Product> Products { get; set; }
             
     }
 }

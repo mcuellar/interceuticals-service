@@ -6,10 +6,27 @@
     ************************************************************************************************-->
   <alias>
     <typeAlias type="InterceuticalsService.Models.ShoppingCart" alias="cart"/>
+    <typeAlias type="InterceuticalsService.Models.ShoppingCartTotals" alias="cartTotals"/>
+    <typeAlias type="InterceuticalsService.Models.ShoppingCartDetails" alias="cartDetails"/>
   </alias>
   <resultMaps>
   </resultMaps>
   <statements>
+    <select id="getCartDetails" parameterClass="int" resultClass="cartDetails">
+      SELECT s.ShoppingCartId as CartId, s.ShoppingCartItemId as CartItemId, s.ProductId as ProductId,
+      s.ItemCount as ItemCount, p.ProductName as ProductName,
+      p.ProductDescription as ProductDescription, p.Price as Price
+      FROM ShoppingCartItem s, OTCProduct p
+      WHERE s.ProductId = p.OTCProductId
+      AND s.ShoppingCartId = #cartId#;
+    </select>
+    <select id="getCartTotals" parameterClass="int" resultClass="cartTotals">
+      SELECT count('x') as TotalItems, sum(p.Price) as TotalPrice
+      FROM ShoppingCartItem s, OTCProduct p
+      WHERE s.ProductId = p.OTCProductId
+      AND s.ShoppingCartId = #cartId#
+      group by s.ShoppingCartId;
+    </select>
     <insert id="saveCart" parameterClass="cart">
       INSERT INTO ShoppingCart (iisSessionId) VALUES (#SessionId#)
       <selectKey type="post" resultClass="int" property="Id">SELECT @@IDENTITY AS Id </selectKey>

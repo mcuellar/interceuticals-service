@@ -23,6 +23,21 @@ namespace InterceuticalsService.Dao
         }
 
         /// <summary>
+        /// Gets list of cart items for a given cart.
+        /// </summary>
+        /// <param name="cartId">Unique cart id identifier</param>
+        /// <returns></returns>
+        public List<ShoppingCartDetails> GetCartDetails(int cartId)
+        {
+            return(List<ShoppingCartDetails>) Mapper.Instance().QueryForList<ShoppingCartDetails>("getCartDetails", cartId);
+        }
+
+        public ShoppingCartTotals GetCartTotals(int cartId)
+        {
+            return Mapper.Instance().QueryForObject<ShoppingCartTotals>("getCartTotals", cartId);
+        }
+
+        /// <summary>
         /// Removes all cart items.
         /// </summary>
         /// <param name="cartId">Cart Id</param>

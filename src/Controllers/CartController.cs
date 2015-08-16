@@ -98,5 +98,51 @@ namespace InterceuticalsService.Controllers
                 return Request.CreateResponse<ResponseResult>(HttpStatusCode.InternalServerError, response);
             }
         }
+
+        public HttpResponseMessage GetDetails(int id)
+        {
+            string errMsg = "FAILED: Unable to remove cart item.";
+            string msg = "Success";
+            string devMsg = "";
+            ResponseResult response = null;
+            List<ShoppingCartDetails> cartItems = null;
+
+            try
+            {
+                devMsg = String.Format("Successfuly retrieved items from cart. Cart Id = [{0}]", id);
+                cartItems = CartDao.GetCartDetails(id);
+                return Request.CreateResponse<List<ShoppingCartDetails>>(HttpStatusCode.OK, cartItems);
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex);
+                response = new ResponseResult { Message = errMsg, DeveloperMessage = ex.Message };
+                return Request.CreateResponse<ResponseResult>(HttpStatusCode.InternalServerError, response);
+            }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage Totals(int id)
+        {
+            string errMsg = "FAILED: Unable to get cart totals.";
+            string msg = "Success";
+            string devMsg = "";
+            ResponseResult response = null;
+            ShoppingCartTotals cartTotals = null;
+            
+            try
+            {
+                devMsg = String.Format("Successfuly retrieved cart totals. Cart Id = [{0}]", id);
+                cartTotals = CartDao.GetCartTotals(id);
+                return Request.CreateResponse<ShoppingCartTotals>(HttpStatusCode.OK, cartTotals);
+            }
+            catch (Exception ex)
+            {
+                Debug.Write(ex);
+                response = new ResponseResult { Message = errMsg, DeveloperMessage = ex.Message };
+                return Request.CreateResponse<ResponseResult>(HttpStatusCode.InternalServerError, response);
+            }
+
+        }
     }
 }
