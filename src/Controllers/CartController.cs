@@ -8,9 +8,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace InterceuticalsService.Controllers
 {
+    [EnableCors(origins: "http://localhost:49900", headers: "*", methods: "*")]
     public class CartController : ApiController
     {
         // Need to DI this way.  Via controller DI did not work.
@@ -22,6 +24,7 @@ namespace InterceuticalsService.Controllers
         /// <param name="cart">ShoppingCart object</param>
         /// <returns></returns>
         [HttpPost]
+        //[EnableCors(origins: "http://localhost:49900", headers: "*", methods: "*")]
         public HttpResponseMessage Save(ShoppingCart cart)
         {
             string errMsg = "FAILED: Unable to save cart.";
@@ -134,6 +137,10 @@ namespace InterceuticalsService.Controllers
             {
                 devMsg = String.Format("Successfuly retrieved cart totals. Cart Id = [{0}]", id);
                 cartTotals = CartDao.GetCartTotals(id);
+
+                if (cartTotals == null)
+                    cartTotals = new ShoppingCartTotals();
+
                 return Request.CreateResponse<ShoppingCartTotals>(HttpStatusCode.OK, cartTotals);
             }
             catch (Exception ex)

@@ -17,7 +17,7 @@ namespace InterceuticalsService
             //Support for XML Response
             GlobalConfiguration.Configuration.Formatters.XmlFormatter.MediaTypeMappings.Add(new QueryStringMapping("xml", "true", "text/xml"));
 
-            //config.EnableCors();
+            config.EnableCors();
 
             // Web API routes
             config.MapHttpAttributeRoutes();
