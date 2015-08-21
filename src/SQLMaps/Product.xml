@@ -26,7 +26,8 @@
       CASE
       WHEN OTCParentProductId IS NOT NULL THEN 1
       ELSE 0
-      END AS HasAutohip
+      END AS HasAutohip,
+      P.Price as Price
       FROM OTCProduct P
       JOIN OTCVisibleProduct VP
       ON VP.OTCProductId = P.OTCProductId

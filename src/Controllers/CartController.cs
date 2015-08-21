@@ -58,7 +58,7 @@ namespace InterceuticalsService.Controllers
         public HttpResponseMessage Clear(int id)
         {
             string errMsg = "FAILED: Unable to empty cart.";
-            string msg = "Success";
+            string msg = "Success. Removed all cart items.";
             int rowsAffected = 0;
             string devMsg = "";
             ResponseResult response = null;

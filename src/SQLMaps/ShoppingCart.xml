@@ -21,7 +21,7 @@
       AND s.ShoppingCartId = #cartId#;
     </select>
     <select id="getCartTotals" parameterClass="int" resultClass="cartTotals">
-      SELECT isnull(count('x'),0) as TotalItems, isnull(sum(p.Price),0.00) as TotalPrice
+      SELECT isnull(count('x'),0) as TotalItems, cast(cast(sum(p.Price) as decimal(16,2)) as varchar(32)) as TotalPrice
       FROM ShoppingCartItem s, OTCProduct p
       WHERE s.ProductId = p.OTCProductId
       AND s.ShoppingCartId = #cartId#

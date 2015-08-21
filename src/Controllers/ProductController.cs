@@ -8,9 +8,11 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Diagnostics;
+using System.Web.Http.Cors;
 
 namespace InterceuticalsService.Controllers
 {
+    [EnableCors(origins: "http://localhost:49900", headers: "*", methods: "*")]
     public class ProductController : ApiController
     {
         // Need to DI this way.  Via controller DI did not work.
