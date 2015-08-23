@@ -12,7 +12,7 @@ using System.Web.Http.Cors;
 
 namespace InterceuticalsService.Controllers
 {
-    [EnableCors(origins: "http://localhost:49900", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CartController : ApiController
     {
         // Need to DI this way.  Via controller DI did not work.
@@ -79,10 +79,10 @@ namespace InterceuticalsService.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage RemoveItem(int id)
+        public HttpResponseMessage DeleteItem(int id)
         {
             string errMsg = "FAILED: Unable to remove cart item.";
-            string msg = "Success";
+            string msg = "Success. Item removed from cart.";
             int rowsAffected = 0;
             string devMsg = "";
             ResponseResult response = null;
@@ -102,7 +102,8 @@ namespace InterceuticalsService.Controllers
             }
         }
 
-        public HttpResponseMessage GetDetails(int id)
+        [HttpGet]
+        public HttpResponseMessage Items(int id)
         {
             string errMsg = "FAILED: Unable to remove cart item.";
             string msg = "Success";
@@ -122,6 +123,24 @@ namespace InterceuticalsService.Controllers
                 response = new ResponseResult { Message = errMsg, DeveloperMessage = ex.Message };
                 return Request.CreateResponse<ResponseResult>(HttpStatusCode.InternalServerError, response);
             }
+        }
+
+        private string getCartTotal(List<ShoppingCartDetails> cartItems)
+        {
+            string total = "";
+            try
+            {
+                foreach(ShoppingCartDetails item in cartItems)
+                {
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return total;
         }
 
         [HttpGet]
