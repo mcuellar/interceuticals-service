@@ -37,5 +37,8 @@
       WHERE OTCSiteId = 7
       ORDER BY DisplayOrder
     </select>
+    <select id="states" resultClass="HashTable">
+      SELECT * FROM OTCState
+    </select>
   </statements>
 </sqlMap>

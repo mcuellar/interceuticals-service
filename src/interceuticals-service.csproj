@@ -203,9 +203,11 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Common\AppContext.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Dao\AppDao.cs" />
     <Compile Include="Dao\CartDao.cs" />
     <Compile Include="Dao\ProductDao.cs" />
     <Compile Include="Extenders\ValidateModelAttribute.cs" />
