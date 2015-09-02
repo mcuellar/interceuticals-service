@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Interceuticals-Service" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ibatis.apache.org/mapping">
+  <!-- ******************************************************************************************* 
+    Note: If your alias class type properties match the column names from the resulted query then
+    there is no need to create a resultMap for it.
+    ************************************************************************************************-->
+  <!--- Cache Models  Ref: http://ibatis.apache.org/docs/dotnet/datamapper/ch03s08.html -->
+  <cacheModels>
+    <cacheModel id="states-cache" implementation="LRU" readOnly="true" serialize="false">
+      <flushInterval minutes="60"/>
+
+      <!-- 100 Entries of max cache to store-->
+      <property name="CacheSize" value="100"/>
+    </cacheModel>
+    <cacheModel id="countries-cache" implementation="LRU" readOnly="true" serialize="false">
+      <flushInterval minutes="60"/>
+
+      <!-- 100 Entries of max cache to store-->
+      <property name="CacheSize" value="100"/>
+    </cacheModel>
+  </cacheModels>
+  <resultMaps>
+  </resultMaps>
+  <statements>
+    <select id="states" resultClass="HashTable"  cacheModel="states-cache">
+      SELECT OTCStateId as Id, OTCCountryId as CountryId, StateName as Label, StateAbbreviation as Abbreviation
+      FROM OTCState
+    </select>
+    <select id="countries" resultClass="HashTable"  cacheModel="countries-cache">
+      SELECT OTCCountryId as Id, CountryName, CountryAbbreviation as Abbreviation, SRSName, SRSID as SRSId
+      FROM OTCCountry C
+      WHERE SRSID IS NOT NULL
+      ORDER BY DisplayOrder DESC,CountryName
+    </select>
+  </statements>
+</sqlMap>

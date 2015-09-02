@@ -127,6 +127,7 @@ namespace InterceuticalsService.Controllers
 
         private string getCartTotal(List<ShoppingCartDetails> cartItems)
         {
+            // TODO: Calculate total
             string total = "";
             try
             {

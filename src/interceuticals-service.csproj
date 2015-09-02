@@ -205,8 +205,10 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Dao\OrderDao.cs" />
     <Compile Include="Dao\AppDao.cs" />
     <Compile Include="Dao\CartDao.cs" />
     <Compile Include="Dao\ProductDao.cs" />
@@ -214,6 +216,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ResponseResult.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
@@ -240,11 +243,19 @@
     <Content Include="Lib\Spring.Web.dll" />
     <Content Include="Lib\Spring.Web.Extensions.dll" />
     <Content Include="Lib\Spring.Web.Mvc3.dll" />
+    <Content Include="SQLMaps\Order.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SQLMaps\Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="SQLMaps\Product.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Resources\application-context.xml" />
-    <Content Include="Resources\dao-context.xml" />
+    <Content Include="Resources\dao-context.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Resources\services.xml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
